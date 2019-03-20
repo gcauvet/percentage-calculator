@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="description" content="Percentage Calculator">
+
+    	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <style>
+            .floatRight {float: right;}
+        </style>
+
+    </head>
+
+    <body>
+        <div class="container">
+
+            <div class="row">
+                <div class='card-panel col s12'>
+                    <h5> Percentage calculator
+                        <span class='floatRight'>
+                            <!-- <a href='../' class='waves-effect waves-teal btn-flat btn-large'>  <i class="material-icons">add</i>Back</a> -->
+                            <a href='../' class="waves-effect waves-teal btn-flat btn-small"><i class="material-icons left">chevron_left</i>Back</a>
+                        </span>
+                    </h5>
+                </div>
+            </div>
+
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <input id="whatIs" type="text">
+                            <label for="whatIs">What is</label>
+                            <span class="helper-text">%</span>
+                        </div>
+                        <div class="input-field col s4">
+                            <input id="of" type="text">
+                            <label for="of">Of</label>
+                        </div>
+                            <div class="input-field col s1">
+                              <a id="firstResultBtn" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">input</i></a>
+                        </div>
+                        <div class="input-field col s3">
+                            <input disabled id="firstResult" type="text">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <input id="WhatPercentageOf" type="text">
+                            <label for="WhatPercentageOf">What percentage of</label>
+                            <span class="helper-text">is</span>
+                        </div>
+                        <div class="input-field col s4">
+                            <input id="OnATotalOf" type="text">
+                            <label for="OnATotalOf">On a total of</label>
+                        </div>
+                        <div class="input-field col s1">
+                            <a id="secondResultBtn" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">input</i></a>
+                        </div>
+                        <div class="input-field col s3">
+                            <input disabled id="secondResult" type="text">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <input id="IncreaseDecrease" type="text">
+                            <label for="IncreaseDecrease">What is the percentage increase/decrease from</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <input id="to" type="text">
+                            <label for="to">To</label>
+                        </div>
+                            <div class="input-field col s1">
+                            <a id="thirdResultBtn" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">input</i></a>
+                        </div>
+                        <div class="input-field col s3">
+                            <input disabled id="thirdResult" type="text">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="row">
+                2019 - Smaha - <a href="https://www.smaha-consulting.com">https://www.smaha-consulting.com</a>
+            </div>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+        <script type="text/javascript">
+
+            const precise = (x) => Number.parseFloat(x).toPrecision(6);
+
+            $("#firstResultBtn").on("click", function() {
+                const result = $('#whatIs').val() * $('#of').val() / 100;
+                $('#firstResult').val(!isNaN(result) ? precise(result) : "Not a number.");
+            });
+
+            $("#secondResultBtn").on("click", function() {
+                const result = $('#WhatPercentageOf').val() / $('#OnATotalOf').val() * 100;
+                $('#secondResult').val(!isNaN(result) ? `${precise(result)} %` : "Not a number.");
+            });
+
+            $("#thirdResultBtn").on("click", function() {
+                const result = ($('#to').val() - $('#IncreaseDecrease').val()) / $('#IncreaseDecrease').val() * 100;
+                $('#thirdResult').val(!isNaN(result) ? `${precise(result)} %` : "Not a number.");
+            });
+        </script>
+    </body>
+</html>
